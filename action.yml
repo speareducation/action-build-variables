@@ -5,6 +5,8 @@ outputs:
     description: The APP Environment, taken from the branch or tag.
   release:
     description: The release name, taken from the branch or tag.
+  projectKey:
+    description: The repository basename (e.g. "accounts")
 
 runs:
   using: 'node12'
