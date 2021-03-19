@@ -1,9 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const path = require('path');
 
 const tag = github.context.ref.replace(/^refs\/(heads|tags)\//, '')
-const projectKey = path.basename(github.context.repo).replace(/\.git$/, '');
+const projectKey = github.context.repo.repo
 
 const [ text1, appEnv, release ] = tag.split('/');
 console.log({ tag, appEnv, release, projectKey })
