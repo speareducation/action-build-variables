@@ -7,6 +7,10 @@ outputs:
     description: The release name, taken from the branch or tag.
   projectKey:
     description: The repository basename (e.g. "accounts")
+  nodeVersion:
+    description: The requested Node version from .nvmrc if present
+  packageVersion:
+    description: The package version from package.json if present
 
 runs:
   using: 'node12'
