@@ -18,7 +18,7 @@ let nodeVersion;
 try {
     nodeVersion = fs.readFileSync('.nvmrc', 'utf8').toString().replace(/\s/g, '');
 } catch (err) {
-    console.warn('.nvmrc not present, or version not set');
+    nodeVersion = '14'; // Default node version
 }
 
 let packageVersion;
@@ -34,4 +34,4 @@ core.setOutput('projectKey', projectKey);
 core.setOutput('appEnv', appEnv);
 core.setOutput('release', release);
 core.setOutput('nodeVersion', nodeVersion);
-core.setOutput('pcakageVersion', packageVersion);
+core.setOutput('packageVersion', packageVersion);
