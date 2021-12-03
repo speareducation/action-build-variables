@@ -1,6 +1,6 @@
 {
   "name": "action-build-variables",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Divinates useful information from the current project: Node version, package version, env, etc",
   "main": "index.js",
   "scripts": {

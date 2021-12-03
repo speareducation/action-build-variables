@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const core = require('@actions/core');
 const github = require('@actions/github');
 
@@ -16,14 +17,16 @@ if (!release) {
 
 let nodeVersion;
 try {
-    nodeVersion = fs.readFileSync('.nvmrc', 'utf8').toString().replace(/\s/g, '');
+    nodeVersion = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, '.nvmrc'), 'utf8')
+        .toString()
+        .replace(/\s/g, '');
 } catch (err) {
     nodeVersion = '14'; // Default node version
 }
 
 let packageVersion;
 try {
-    packageVersion = require('./package.json').version;
+    packageVersion = require(path.resolve(process.env.GITHUB_WORKSPACE, 'package.json')).version;
 } catch (err) {
     console.warn('package.json not present, or version not set');
 }
