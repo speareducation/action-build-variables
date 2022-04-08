@@ -31,10 +31,20 @@ try {
     console.warn('package.json not present, or version not set');
 }
 
+let phpVersion;
+try {
+    phpVersion = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, '.pvmrc'), 'utf8')
+        .toString()
+        .replace(/\s/g, '');
+} catch (err) {
+    phpVersion = '';
+}
+
 console.log({ tag, appEnv, release, projectKey, nodeVersion, packageVersion })
 
 core.setOutput('projectKey', projectKey);
 core.setOutput('appEnv', appEnv);
 core.setOutput('release', release);
 core.setOutput('nodeVersion', nodeVersion);
+core.setOutput('phpVersion', phpVersion);
 core.setOutput('packageVersion', packageVersion);

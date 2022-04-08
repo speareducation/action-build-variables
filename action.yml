@@ -11,6 +11,8 @@ outputs:
     description: The requested Node version from .nvmrc if present
   packageVersion:
     description: The package version from package.json if present
+  phpVersion:
+    description: The PHP version from .pvmrc if present
 
 runs:
   using: 'node12'
