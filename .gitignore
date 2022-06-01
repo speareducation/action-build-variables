@@ -1,7 +1,6 @@
-.idea
 .DS_Store
-/nbproject
+.idea
+.vscode
 error_log
 npm-debug.log
-yarn-error.log
 .eslintcache
