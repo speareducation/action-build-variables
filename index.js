@@ -40,8 +40,7 @@ let packageVersion;
 let packageMajorVersion;
 let packageMinorVersion;
 let packagePatchVersion;
-let packageReleaseVersion;
-let packagePreReleaseVersion;
+let packagePreVersion;
 let packageIsFullRelease;
 try {
     const package = require(path.resolve(process.env.GITHUB_WORKSPACE, 'package.json'));
@@ -59,10 +58,13 @@ try {
     // Version and release
     packageVersion = package.version;
 
-    [ packageReleaseVersion, packagePreReleaseVersion ] = packageVersion.split('-');
-    [ packageMajorVersion, packageMinorVersion, packagePatchVersion ] = packageReleaseVersion.split('.');
+    [ packagePatchVersion, packagePreVersion ] = packageVersion.split('-');
 
-    packageIsFullRelease = packagePreReleaseVersion ? 0 : 1;
+    const versionParts = packagePatchVersion.split('.');
+    packageMajorVersion = versionParts[0];
+    packageMinorVersion = versionParts.slice(0, 2).join('.');
+
+    packageIsFullRelease = packagePreVersion ? 0 : 1;
 } catch (err) {
     console.warn('package.json not present, or version not set');
 }
@@ -81,8 +83,7 @@ console.log('action-build-variables', {
     packageMajorVersion,
     packageMinorVersion,
     packagePatchVersion,
-    packageReleaseVersion,
-    packagePreReleaseVersion,
+    packagePreVersion,
     packageIsFullRelease,
 });
 
@@ -98,6 +99,5 @@ core.setOutput('packageVersion', packageVersion);
 core.setOutput('packageMajorVersion', packageMajorVersion);
 core.setOutput('packageMinorVersion', packageMinorVersion);
 core.setOutput('packagePatchVersion', packagePatchVersion);
-core.setOutput('packageReleaseVersion', packageReleaseVersion);
-core.setOutput('packagePreReleaseVersion', packagePreReleaseVersion);
+core.setOutput('packagePreVersion', packagePreVersion);
 core.setOutput('packageIsFullRelease', packageIsFullRelease);

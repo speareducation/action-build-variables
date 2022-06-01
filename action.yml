@@ -18,19 +18,17 @@ outputs:
   packagePackage:
     description: The package name (without scope) from package.json if present
   packageVersion:
-    description: The package version from package.json if present (e.g. "1.0.0-pre.0")
+    description: The package version from package.json if present (e.g. "1.2.3-pre.0")
   packageMajorVersion:
     description: The package major version from package.json if present (e.g. "1")
   packageMinorVersion:
-    description: The package minor version from package.json if present (e.g. "0")
+    description: The package major and minor version from package.json if present (e.g. "1.2")
   packagePatchVersion:
-    description: The package patch version from package.json if present (e.g. "0")
-  packageReleaseVersion:
-    description: The package release version from package.json if present (e.g. "1.0.0")
-  packagePreReleaseVersion:
+    description: The package major, minor, and patch version from package.json if present (e.g. "1.2.3")
+  packagePreVersion:
     description: The package pre-release version from package.json if present (e.g. "pre.0")
   packageIsFullRelease:
-    description: Whether the package version is a full release (e.g. "1.0.0")
+    description: Whether the package version is a full release (i.e. not a pre-release)
 
 runs:
   using: 'node16'

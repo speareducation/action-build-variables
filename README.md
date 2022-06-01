@@ -49,33 +49,29 @@ The full project version, taken from package.json if present (default empty stri
 Example: `1.2.3-beta.0`
 
 ### `packageMajorVersion`
-The package major version from package.json if present (e.g. "1")
+The package major version
 Example: `1` if packageVersion is `1.2.3`
 
 ### `packageMinorVersion`
-The package minor version from package.json if present (e.g. "0")
-Example: `2` if packageVersion is `1.2.3`
+The package major and minor version
+Example: `1.2` if packageVersion is `1.2.3`
 
 ### `packagePatchVersion`
-The package patch version from package.json if present (e.g. "0")
-Example: `3` if packageVersion is `1.2.3`
+The package major, minor, and patch version
+Example: `1.2.3` if packageVersion is `1.2.3`
 
-### `packageReleaseVersion`
-The package release version from package.json if present (e.g. "1.0.0")
-Example: `1.2.3` if packageVersion is `1.2.3-beta.0`
-
-### `packagePreReleaseVersion`
-The package pre-release version from package.json if present (e.g. "pre.0")
+### `packagePreVersion`
+The package pre-release version
 Example: `beta.0` if packageVersion is `1.2.3-beta.0`
 
 ### `packageIsFullRelease`
-Whether the package version is a full release (e.g. "1.0.0")
+Whether the package version is a full release (i.e. not pre-release)
 Example: `1` if packageVersion is `1.2.3`, `0` if packageVersion is `1.2.3-beta.0`
 
 ## Example usage
 ```yaml
 - id: build-vars
-  uses: speareducation/action-build-variables@main
+  uses: speareducation/action-build-variables@1
 
 - id: other-action
   env:
@@ -87,7 +83,7 @@ Example: `1` if packageVersion is `1.2.3`, `0` if packageVersion is `1.2.3-beta.
 ```yaml
 # Read node version from `.nvmrc` file
 - id: build-vars
-  uses: speareducation/action-build-variables@main
+  uses: speareducation/action-build-variables@1
 
 - uses: actions/setup-node@v1
   with:
