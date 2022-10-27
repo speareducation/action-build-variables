@@ -1,3 +1,7 @@
+// TODO: refactor all save-state / set-output to the new format:
+//     find => echo "::set-output name={name}::{value}"
+//     replace => echo "{name}={value}" >> $GITHUB_OUTPUT
+// See: https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/
 const fs = require('fs');
 const path = require('path');
 const core = require('@actions/core');
