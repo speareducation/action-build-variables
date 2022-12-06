@@ -8,7 +8,7 @@ const projectKey = github.context.repo.repo
 const tag = github.context.ref.replace(/^refs\/(heads|tags)\//, '')
 const [ text1, appEnv, release ] = tag.split('/');
 
-if (!/^(sandbox|dotco|uat|staging|production)$/.test(appEnv)) {
+if (!/^(dev|development|qa|sandbox|dotco|uat|staging|production)$/.test(appEnv)) {
     console.warn('appEnv could not be parsed from the ref, or it is invalid.')
 }
 if (!release) {
