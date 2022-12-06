@@ -7,13 +7,29 @@ outputs:
     description: The release name, taken from the branch or tag.
   projectKey:
     description: The repository basename (e.g. "accounts")
-  nodeVersion:
-    description: The requested Node version from .nvmrc if present
-  packageVersion:
-    description: The package version from package.json if present
   phpVersion:
     description: The PHP version from .pvmrc if present
+  nodeVersion:
+    description: The requested Node version from .nvmrc if present
+  packageName:
+    description: The package name from package.json if present
+  packageScope:
+    description: The package scope (org) from package.json if present
+  packagePackage:
+    description: The package name (without scope) from package.json if present
+  packageVersion:
+    description: The package version from package.json if present (e.g. "1.2.3-pre.0")
+  packageMajorVersion:
+    description: The package major version from package.json if present (e.g. "1")
+  packageMinorVersion:
+    description: The package major and minor version from package.json if present (e.g. "1.2")
+  packagePatchVersion:
+    description: The package major, minor, and patch version from package.json if present (e.g. "1.2.3")
+  packagePreVersion:
+    description: The package pre-release version from package.json if present (e.g. "pre.0")
+  packageIsFullRelease:
+    description: Whether the package version is a full release (i.e. not a pre-release)
 
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'index.js'
