@@ -47,25 +47,25 @@ let packagePatchVersion;
 let packagePreVersion;
 let packageIsFullRelease;
 try {
-    const package = require(path.resolve(process.env.GITHUB_WORKSPACE, 'package.json'));
+    const packageJson = require(path.resolve(process.env.GITHUB_WORKSPACE, 'package.json'));
 
     // Name and scope if present
-    packageName = package.name;
+    packageName = packageJson.name;
 
     const nameParts = packageName.match(/^@([^/]+)?\/?(.*)$/);
     if (nameParts) {
-        [ , packageScope, packagePackage ] = nameParts;
+        [, packageScope, packagePackage] = nameParts;
     } else {
         packagePackage = packageName;
     }
 
     // Version and release
-    packageVersion = package.version;
+    packageVersion = packageJson.version;
 
-    [ packagePatchVersion, packagePreVersion ] = packageVersion.split('-');
+    [packagePatchVersion, packagePreVersion] = packageVersion.split('-');
 
     const versionParts = packagePatchVersion.split('.');
-    packageMajorVersion = versionParts[0];
+    [packageMajorVersion] = versionParts;
     packageMinorVersion = versionParts.slice(0, 2).join('.');
 
     packageIsFullRelease = packagePreVersion ? 0 : 1;
