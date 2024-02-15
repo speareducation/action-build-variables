@@ -31,5 +31,5 @@ outputs:
     description: Whether the package version is a full release (i.e. not a pre-release)
 
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'index.js'
