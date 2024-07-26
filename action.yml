@@ -29,6 +29,10 @@ outputs:
     description: The package pre-release version from package.json if present (e.g. "pre.0")
   packageIsFullRelease:
     description: Whether the package version is a full release (i.e. not a pre-release)
+  dockerRegistry:
+    description: The ECR or other registry containing the docker image
+  dockerBaseImage:
+    description: The full base image URI for the docker container
 
 runs:
   using: 'node20'

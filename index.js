@@ -19,6 +19,26 @@ if (!release) {
     console.warn('release could not be parsed from the ref.');
 }
 
+
+[[ -n "${DOCKER_REGISTRY}" ]] && echo "docker-registry=${DOCKER_REGISTRY}" >> ${GITHUB_OUTPUT} || :
+[[ -n "${DOCKER_BASE_IMAGE_NAME}" ]] && echo "docker-base-image=${DOCKER_REGISTRY}/${DOCKER_BASE_IMAGE_NAME}:${DOCKER_BASE_IMAGE_VER}" >> ${GITHUB_OUTPUT} || :
+
+let dockerRegistry = '';
+let dockerBaseImage = '';
+try {
+    buildconfig = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, '.buildconfig'), 'utf8')
+        .split('\n')
+        .reduce((carry, entry) => {
+            let [key, value] = entry.split('=', 1);
+            carry[key] = value;
+            return { ...carry, [key]: value };
+        }, {});
+    dockerRegistry = buildconfig.DOCKER_REGISTRY;
+    dockerBaseImage = `${dockerRegistry}/${buildconfig.DOCKER_BASE_IMAGE_NAME}:${buildconfig.DOCKER_BASE_IMAGE_VER}`;
+
+} catch (err) {
+}
+
 let phpVersion;
 try {
     phpVersion = fs.readFileSync(path.resolve(process.env.GITHUB_WORKSPACE, '.pvmrc'), 'utf8')
@@ -105,3 +125,5 @@ core.setOutput('packageMinorVersion', packageMinorVersion);
 core.setOutput('packagePatchVersion', packagePatchVersion);
 core.setOutput('packagePreVersion', packagePreVersion);
 core.setOutput('packageIsFullRelease', packageIsFullRelease);
+core.setOutput('dockerRegistry', dockerRegistry);
+core.setOutput('dockerBaseImage', dockerBaseImage);
