@@ -19,10 +19,6 @@ if (!release) {
     console.warn('release could not be parsed from the ref.');
 }
 
-
-[[ -n "${DOCKER_REGISTRY}" ]] && echo "docker-registry=${DOCKER_REGISTRY}" >> ${GITHUB_OUTPUT} || :
-[[ -n "${DOCKER_BASE_IMAGE_NAME}" ]] && echo "docker-base-image=${DOCKER_REGISTRY}/${DOCKER_BASE_IMAGE_NAME}:${DOCKER_BASE_IMAGE_VER}" >> ${GITHUB_OUTPUT} || :
-
 let dockerRegistry = '';
 let dockerBaseImage = '';
 try {
