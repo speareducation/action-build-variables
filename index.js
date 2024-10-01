@@ -10,10 +10,14 @@ const github = require('@actions/github');
 const projectKey = github.context.repo.repo
 
 const tag = github.context.ref.replace(/^refs\/(heads|tags)\//, '')
-const [ , appEnv, release ] = tag.split('/');
+let [type, appEnv, release ] = tag.split('/');
 
 if (!/^(dev|development|qa|sandbox|dotco|uat|staging|production)$/.test(appEnv)) {
     console.warn('appEnv could not be parsed from the ref, or it is invalid.')
+    appEnv = null;
+}
+if (type !== 'release') {
+    release = null;
 }
 if (!release) {
     console.warn('release could not be parsed from the ref.');
