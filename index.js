@@ -12,6 +12,15 @@ const projectKey = github.context.repo.repo
 const tag = github.context.ref.replace(/^refs\/(heads|tags)\//, '')
 let [, appEnv, release ] = tag.split('/');
 
+const appEnvAbbreviations = {
+    development: 'dev',
+    qa: 'qa',
+    uat: 'uat',
+    production: 'prd',
+    staging: 'stg',
+};
+const appEnvAbbr = appEnvAbbreviations[appEnv] ?? null;
+
 if (!/^(dev|development|qa|sandbox|dotco|uat|staging|production)$/.test(appEnv)) {
     console.warn('appEnv could not be parsed from the ref, or it is invalid.')
 }
@@ -93,6 +102,7 @@ try {
 console.log('action-build-variables', {
     tag,
     appEnv,
+    appEnvAbbr,
     release,
     projectKey,
     phpVersion,
@@ -110,6 +120,7 @@ console.log('action-build-variables', {
 
 core.setOutput('projectKey', projectKey);
 core.setOutput('appEnv', appEnv);
+core.setOutput('appEnvAbbr', appEnvAbbr);
 core.setOutput('release', release);
 core.setOutput('phpVersion', phpVersion);
 core.setOutput('nodeVersion', nodeVersion);
