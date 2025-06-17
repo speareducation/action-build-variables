@@ -3,6 +3,8 @@ description: Outputs some variables useful for building environments.
 outputs:
   appEnv:
     description: The APP Environment, taken from the branch or tag.
+  appEnvAbbr:
+    description: The Abbreviated APP Environment (stg, prd, dev, etc.)
   release:
     description: The release name, taken from the branch or tag.
   projectKey:
