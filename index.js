@@ -14,7 +14,7 @@ let [, appEnv, release ] = tag.split('/');
 
 const appEnvAbbreviations = {
     development: 'dev',
-    qa: 'qa',
+    qa: 'qat',
     uat: 'uat',
     production: 'prd',
     staging: 'stg',
